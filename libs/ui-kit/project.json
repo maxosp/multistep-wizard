@@ -1,0 +1,22 @@
+{
+  "name": "ui-kit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-kit/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/ui-kit/ng-package.json",
+        "tailwindConfig": "libs/ui-kit/tailwind.config.js"
+      },
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/ui-kit/tsconfig.lib.json"
+        }
+      }
+    }
+  }
+}

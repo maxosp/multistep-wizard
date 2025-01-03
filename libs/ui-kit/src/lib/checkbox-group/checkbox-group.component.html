@@ -1,0 +1,14 @@
+<div>
+  <label class="text-gray-700">{{ label }}</label>
+
+  <div *ngFor="let option of options" class="flex items-center space-x-2">
+    <input
+      type="checkbox"
+      [id]="option"
+      [checked]="selectedOptions.includes(option)"
+      (change)="toggleSelection(option)"
+      class="h-4 w-4"
+    />
+    <label [for]="option" class="text-gray-700">{{ option }}</label>
+  </div>
+</div>

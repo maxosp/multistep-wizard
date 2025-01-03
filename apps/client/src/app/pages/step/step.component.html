@@ -1,0 +1,55 @@
+<div class="space-y-6">
+  <h2 class="text-2xl font-bold text-gray-700">
+    Step {{ currentStepIndex }} of
+    {{ stepsService.steps().length }}
+  </h2>
+
+  <form>
+    <div
+      *ngFor="let question of stepsService.currentStep().questions"
+      class="space-y-4"
+    >
+      <div *ngIf="question.type === 'text' || question.type === 'number'">
+        <ui-input
+          [label]="question.title"
+          [(ngModel)]="formData[question.type]"
+          [type]="question.type === 'number' ? 'number' : 'text'"
+          [name]="question.type"
+        ></ui-input>
+      </div>
+
+      <div *ngIf="question.type === 'radio'">
+        <ui-radio-group
+          [options]="question.options || []"
+          [label]="question.title"
+          [(ngModel)]="formData[question.type]"
+          [name]="question.type"
+        ></ui-radio-group>
+      </div>
+
+      <div *ngIf="question.type === 'checkbox'">
+        <ui-checkbox-group
+          [options]="question.options || []"
+          [label]="question.title"
+          [(ngModel)]="formData[question.type]"
+          [name]="question.type"
+        ></ui-checkbox-group>
+      </div>
+    </div>
+
+    <div class="flex justify-between mt-6">
+      <ui-button
+        type="secondary"
+        [disabled]="!stepsService.hasPreviousStep()"
+        (clicked)="onPrev()"
+        >Previous</ui-button
+      >
+
+      <div class="flex space-x-4">
+        <ui-button (clicked)="onNext()">{{
+          stepsService.hasNextStep() ? 'Next' : 'Submit'
+        }}</ui-button>
+      </div>
+    </div>
+  </form>
+</div>

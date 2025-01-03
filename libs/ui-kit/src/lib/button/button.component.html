@@ -1,0 +1,12 @@
+<button
+  (click)="onClick()"
+  [disabled]="disabled"
+  [ngClass]="{
+    'bg-blue-500 text-white': variant === 'primary',
+    'bg-gray-500 !text-white': variant === 'secondary',
+    'cursor-not-allowed': disabled
+  }"
+  class="p-2 rounded-md transition-colors duration-200 hover:bg-blue-600 disabled:opacity-50"
+>
+  <ng-content></ng-content>
+</button>
